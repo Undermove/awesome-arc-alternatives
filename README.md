@@ -41,7 +41,7 @@ Sorted by name. The Platforms column lists where each browser runs or is announc
 | Flow | Chromium (Electron) | Windows, macOS, Linux | GPL-3.0 | [flow-browser.com](https://flow-browser.com/) | [MultiboxLabs/flow-browser](https://github.com/MultiboxLabs/flow-browser) |
 | Halo | Chromium (fork) | macOS | Closed | [oxyism.com](https://oxyism.com/) | — |
 | Helium | Chromium (fork) | Windows, macOS, Linux | GPL-3.0 | [helium.computer](https://helium.computer/) | [imputnet/helium](https://github.com/imputnet/helium) |
-| Magnetite | Chromium (CEF) | macOS, Linux | EUPL-1.2 | [magnetitebrowser.org](https://magnetitebrowser.org/) | [magnetite-browser/magnetite](https://github.com/magnetite-browser/magnetite) |
+| Magnetite | Chromium (CEF) | Windows, macOS, Linux | EUPL-1.2 | [magnetitebrowser.org](https://magnetitebrowser.org/) | [magnetite-browser/magnetite](https://github.com/magnetite-browser/magnetite) |
 | Mise | Chromium (Electron) | Windows, macOS, Linux | GPL-3.0 | [rakosn1cek.github.io/Mise-browser](https://rakosn1cek.github.io/Mise-browser) | [Mise-Browser](https://github.com/Rakosn1cek/Mise-browser) |
 | Nook | WebKit | macOS | GPL-3.0 | [browsewithnook.com](https://browsewithnook.com/) | [nook-browser/Nook](https://github.com/nook-browser/Nook) |
 | Ora | WebKit | macOS | GPL-3.0 | — | [the-ora/browser](https://github.com/the-ora/browser) |

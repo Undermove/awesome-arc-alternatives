@@ -65,6 +65,7 @@ Sorted by name. The Platforms column lists where each browser runs or is announc
 | YARC | Chromium (Electron) | Windows, macOS, Linux | GPL-3.0 | [yenebeb.nl/yarc](https://yenebeb.nl/yarc) | [yenebeb/yarc](https://github.com/yenebeb/yarc) |
 | Zen | Firefox (Gecko) | Windows, macOS, Linux | MPL-2.0 | [zen-browser.app](https://zen-browser.app/) | [zen-browser/desktop](https://github.com/zen-browser/desktop) |
 | Zephium | WebKit (macOS) + Chromium (Windows) | Windows, macOS | MPL-2.0 | [zephium.app](https://zephium.app) | [zephium-browser/Zephium](https://github.com/zephium-browser/Zephium) |
+| Zepper | Chromium (Electron) | macOS, Linux | GPL-3.0 | [mrdsa.dev/zepper](https://mrdsa.dev/zepper) | [imdewan/zepper-browser](https://github.com/imdewan/zepper-browser) |
 <!-- list:end -->
 
 Missing a browser, or something out of date? [Edit this table](CONTRIBUTING.md).

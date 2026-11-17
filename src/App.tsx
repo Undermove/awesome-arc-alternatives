@@ -129,8 +129,8 @@ function Hero({ rows, loaded }: { rows: Browser[]; loaded: boolean }) {
   ]
 
   return (
-    <div className="pt-9 pb-7 md:pt-14 md:pb-10">
-      <p className="mb-5 inline-flex items-center gap-2 rounded-full border bg-card py-1.5 pr-3 pl-2.5 text-[13px] text-muted-foreground">
+    <div className="pt-3 pb-5 md:pt-5 md:pb-6">
+      <p className="mb-4 inline-flex items-center gap-2 rounded-full border bg-card py-1.5 pr-3 pl-2.5 text-[13px] text-muted-foreground">
         <span className="size-2 rounded-full bg-brand animate-pulse-ring" />
         {left > 0 ? (
           <span>
@@ -156,7 +156,7 @@ function Hero({ rows, loaded }: { rows: Browser[]; loaded: boolean }) {
         can pick where to go next.
       </p>
 
-      <dl className="mt-9 flex flex-wrap gap-x-9 gap-y-2">
+      <dl className="mt-7 flex flex-wrap gap-x-9 gap-y-2">
         {stats.map((s) => (
           <div key={s.label} className="flex flex-col-reverse">
             <dt className="text-[13px] text-muted-foreground">{s.label}</dt>
@@ -165,25 +165,65 @@ function Hero({ rows, loaded }: { rows: Browser[]; loaded: boolean }) {
         ))}
       </dl>
 
-      <ol className="mt-11 ml-[3px] grid border-l md:ml-0 md:grid-cols-3 md:border-t md:border-l-0">
-        {TIMELINE.map((t) => {
-          const past = new Date(t.date + "T00:00").getTime() <= NOW
-          return (
-            <li key={t.date} className="relative pb-4 pl-[18px] text-sm text-muted-foreground md:pt-3.5 md:pr-4 md:pb-0 md:pl-0">
-              <span
-                className={cn(
-                  "absolute top-1.5 -left-1 size-[7px] rounded-full bg-faint md:-top-1 md:left-0",
-                  past && "bg-foreground",
-                  t.final && "bg-brand",
-                )}
-              />
-              <time className="mb-0.5 block font-mono text-[13px] font-medium text-foreground">{t.label}</time>
-              {t.text}
-            </li>
-          )
-        })}
-      </ol>
+      <Timeline />
     </div>
+  )
+}
+
+function Timeline() {
+  const times = TIMELINE.map((t) => new Date(t.date + "T00:00").getTime())
+  // Last milestone already reached, and how far we are towards the next one (0..1).
+  const last = times.filter((t) => t <= NOW).length - 1
+  const showNow = last < times.length - 1
+  const from = Math.max(last, 0)
+  const frac = last < 0 ? 0 : (NOW - times[from]) / (times[from + 1] - times[from])
+  const nowPct = ((from + frac) / times.length) * 100
+  const today = new Date(NOW).toLocaleDateString("en-US", { month: "short", day: "numeric" })
+
+  const items = TIMELINE.map((t, i) => {
+    const past = times[i] <= NOW
+    return (
+      <li key={t.date} className="relative pb-4 pl-[18px] text-sm text-muted-foreground md:pt-3.5 md:pr-4 md:pb-0 md:pl-0">
+        <span
+          className={cn(
+            "absolute top-1.5 -left-1 size-[7px] rounded-full bg-faint md:-top-1 md:left-0",
+            past && "bg-foreground",
+            t.final && "bg-brand",
+          )}
+        />
+        <time className="mb-0.5 block font-mono text-[13px] font-medium text-foreground">{t.label}</time>
+        {t.text}
+      </li>
+    )
+  })
+
+  const now = (
+    <li
+      key="now"
+      className="relative h-4 md:absolute md:left-(--now) md:top-0 md:h-0 md:w-0"
+      style={{ "--now": `${nowPct}%` } as React.CSSProperties}
+    >
+      <span
+        tabIndex={0}
+        role="img"
+        aria-label={`You are here, ${today}`}
+        className="group absolute top-px -left-[7px] size-[13px] cursor-default rounded-full outline-none before:absolute before:-inset-2.5 before:content-[''] focus-visible:ring-2 focus-visible:ring-ring md:top-[-0.5px] md:left-0 md:-translate-x-1/2 md:-translate-y-1/2"
+      >
+        <span className="block size-full rounded-full border-2 border-background bg-warn [--pulse-color:var(--warn)] animate-pulse-ring" />
+        <span className="pointer-events-none absolute top-1/2 left-full ml-3 -translate-y-1/2 rounded-md bg-foreground px-2 py-0.5 text-[11px] leading-5 font-medium whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100 md:top-auto md:bottom-full md:left-1/2 md:mb-2.5 md:ml-0 md:-translate-x-1/2 md:translate-y-0">
+          You are here · {today}
+          <span className="absolute top-1/2 right-full size-1.5 translate-x-1/2 -translate-y-1/2 rotate-45 bg-foreground md:top-full md:right-auto md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2" />
+        </span>
+      </span>
+    </li>
+  )
+
+  // On phones the marker sits in the list between the two milestones; on desktop it floats over the line.
+  const ordered = showNow ? [...items.slice(0, from + 1), now, ...items.slice(from + 1)] : items
+  return (
+    <ol className="relative mt-11 ml-[3px] grid border-l md:ml-0 md:grid-cols-3 md:border-t md:border-l-0">
+      {ordered}
+    </ol>
   )
 }
 
@@ -226,7 +266,7 @@ function BrowserList({ rows, loaded }: { rows: Browser[]; loaded: boolean }) {
   const platformCount = (os: string) => rows.filter((r) => r.platforms.includes(os as OS)).length
 
   return (
-    <section className="py-10">
+    <section className="pt-6 pb-10">
       <h2 className="mb-1.5 text-[22px] font-semibold tracking-tight">Browsers</h2>
       <p className="mb-5 max-w-[78ch] text-sm text-muted-foreground">
         Created is when the repo was made, so sort by it to spot newcomers. Updated is the latest GitHub

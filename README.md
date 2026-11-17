@@ -28,6 +28,7 @@ Sorted by name. The Platforms column lists where each browser runs or is announc
 | Arcium | Chromium (fork) | macOS | GPL-3.0 | — | [dr-baker/Arcium-macOS](https://github.com/dr-baker/Arcium-macOS) |
 | Ardia | Chromium + WebKit | macOS | GPL-3.0 | [ardia.dev](https://ardia.dev/) | [mantrakp04/ardia](https://github.com/mantrakp04/ardia) |
 | Argus | WebKit (unconfirmed) | — | Closed | [argusbrowser.io](https://argusbrowser.io/) | — |
+| Arx | Chromium + WebKit | macOS | GPL-3.0 (when launched) | [capturecontext.dev/apps/arx](https://capturecontext.dev/apps/arx) | — |
 | Aside | Chromium (fork) | Windows, macOS | Closed | [aside.com](https://aside.com/) | — |
 | Aura | WebKit | iOS | MPL-2.0 | — | [doorhinge-apps/Aura-Browser](https://github.com/doorhinge-apps/Aura-Browser) |
 | Blanc | Chromium (Electron) | Windows, macOS, Linux, iOS | MIT | [blanc.day](https://blanc.day/) | [bnfy/blanc](https://github.com/bnfy/blanc) |
